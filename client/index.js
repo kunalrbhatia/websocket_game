@@ -10,12 +10,6 @@ function millisToMinutesAndSeconds(millis) {
   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 const socket = new WebSocket("ws://localhost:3000");
-// Connection opened
-socket.addEventListener("open", function (event) {
-  console.log("Connected to WS Server");
-});
-
-// Listen for messages
 socket.addEventListener("message", function (event) {
   seconds = 10 * 1000;
   clearInterval(_interval);
@@ -25,11 +19,10 @@ socket.addEventListener("message", function (event) {
   score = parseInt(msg.score);
   document.getElementById("scr").innerText = score;
   document.getElementById("atm").innerText = msg.no_attempt ? msg.no_attempt : 0;
-  if (score >= 10 || score <= -3) {
-    socket.close();
-    if (score === -3) document.getElementById("status").innerText = "Stop, Your have reached lowest score!";
-    if (score === 10) document.getElementById("status").innerText = "Stop, Your have reached Highest score!";
-  } else if (no_attempt >= 3) {
+  if (score === -3) document.getElementById("status").innerText = "Stop, Your have reached lowest score!";
+  if (score === 10) document.getElementById("status").innerText = "Stop, Your have reached Highest score!";
+  if (score >= 10 || score <= -3) socket.close();
+  else if (no_attempt >= 3) {
     socket.close();
     document.getElementById("status").innerText = "Stop, Your have not attempted 3 consecutive tries ";
   } else {
@@ -43,8 +36,9 @@ socket.addEventListener("message", function (event) {
     }, 1000);
   }
 });
-
 const sendMessage = () => {
-  let cm = document.getElementById("mts");
-  socket.send(JSON.stringify({ cm: cm.value }));
+  var cm = document.getElementById("mts");
+  if (cm.value) socket.send(JSON.stringify({ cm: cm.value }));
+  cm.value = "";
+  cm.focus();
 };

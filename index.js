@@ -7,8 +7,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server: server });
 
 wss.on("connection", function connection(ws) {
-  console.log("A new client Connected!");
-  let ran_no = Math.ceil(Math.random() * 10);
+  let ran_no = Math.ceil(Math.random() * 9);
   let score = 0;
   let no_attempt = 0;
 
@@ -33,7 +32,4 @@ wss.on("connection", function connection(ws) {
     }
   });
 });
-
-app.get("/", (req, res) => res.send("Hello World!"));
-
-server.listen(3000, () => console.log(`Lisening on port :3000`));
+server.listen(3000, () => {});
