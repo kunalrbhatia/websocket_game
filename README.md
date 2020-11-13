@@ -1,6 +1,6 @@
 # WebSocket Game
 ## Client Page Snap
-![ClientPage](https://i.imgur.com/SAcZNAw.png)
+![ClientPage](https://i.imgur.com/dvWqgO1.png)
 ## Rules
 ### The following rules apply for all projects:
 ### 1. The project can be done using any libraries/frameworks you’re comfortable with.
