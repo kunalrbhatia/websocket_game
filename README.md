@@ -1,7 +1,7 @@
 # WebSocket Game
 ## Client Page Snap
 ![ClientPage](https://i.imgur.com/SAcZNAw.png)
-##Rules
+## Rules
 The following rules apply for all projects:
 1. The project can be done using any libraries/frameworks you’re comfortable with.
 2. Create a github/gitlab/bitbucket or equivalent repository to host your code.
